@@ -1,22 +1,20 @@
-const express = require("express");//used for routing 
-const path = require("path");//east way to work within directory
-const app = express();//stored express func
-const hbs = require("hbs");//js template engine
-require("./db/conn");//established connection with database and js
-const Register = require("./models/registers");//imported register collection
-const port = process.env.PORT || 3000;//port to render project
-// console.log(path.join(__dirname, "../public"));
-//storing path in variable
+const express = require("express");//For routing 
+const path = require("path");//Easy work within directory
+const app = express();//Stored express function
+const hbs = require("hbs");//JS temp engine
+require("./db/conn");//establishing connection(with database and js )
+const Register = require("./models/registers");//register collection imported
+const port = process.env.PORT || 3000;//port to display project
 const static_path = path.join(__dirname, "../public");
 const template_path = path.join(__dirname, "../templates/views");
 const partials_path = path.join(__dirname, "../templates/partials");
-//uss and set...one of the first thing to run
-app.use(express.json());//parsing data
-app.use(express.urlencoded({extended:false}));//parsing data
-app.use(express.static(static_path));//access style css
-app.set("view engine", "hbs");//using hbs for templating 
-app.set("views", template_path);// setting path to access views direc from any directory
-hbs.registerPartials(partials_path);//templates reuse through partials
+//use and set...one of the first thing to run
+app.use(express.json());//Data Parsing
+app.use(express.urlencoded({extended:false}));//Data Parsing
+app.use(express.static(static_path));//accessing css file
+app.set("view engine", "hbs");//HBS for templating 
+app.set("views", template_path);// Set path to access views directory from any directory
+hbs.registerPartials(partials_path);//Reusing templates using partial
 //handling request to designated location 
 app.get("/", (req, res) => {
     res.render("index");
